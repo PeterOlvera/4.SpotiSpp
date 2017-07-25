@@ -15,7 +15,7 @@ export class SpotifyService {
   getArtistas( termino:string ){
 
     let headers = new Headers();
-    headers.append( 'Authorization' , 'Bearer BQCgGZRK8uYF48BtKweo0g1ydNIk7gbg1Ve_uS65qtC7to9Z72NM8uoxUx_-L-XdzTkPq5-r_s0WptYVaXVyow');
+    headers.append( 'Authorization' , 'Bearer BQAQHTun6uwDujZ98CvQWURbVflOA4mIiVsNrVgGd5lrdbzzPyItnZtynbxMJpqm6nJ0_WtknhUwB-DhzfBM-g');
 
     let query = `?q=${ termino}&type=artist`;
     let url = this.urlBusqueda + query;

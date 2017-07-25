@@ -1,3 +1,23 @@
-<p>
-  search works!
-</p>
+<div class="container mt-3">
+  <label for="termino">Buscador de artistas</label>
+  <div class="row">
+    <div class="col-md-3">
+      <input [(ngModel)]="termino"
+        type="text" name="termino" value=""
+        placeholder="buscar por artista..." class="form-control mt-2"
+        (keyup)="buscarArtista()">
+        <hr>
+    </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="text-center col-md-3" *ngFor="let artista of _spotifyService.artistas">
+        <img [src]="artista.images | sinfoto" [alt]="artista.name" class="img-fluid img-thumbnail">
+        <p>
+          {{ artista.name }}
+        </p>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
