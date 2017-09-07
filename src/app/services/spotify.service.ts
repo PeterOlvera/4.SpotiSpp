@@ -8,23 +8,76 @@ export class SpotifyService {
   artistas:any[] = [];
 
   urlBusqueda:string = "https://api.spotify.com/v1/search";
+  urlArtista:string = "	https://api.spotify.com/v1/artists";
+
+  token = 'Bearer BQAj2H3LlN00Si0dGcKOOL7fQTqmRYCygu5fE8Md8kqHvAqwa2ZWqABOpQXbxQC0JSZoPU0VYQ5ewxhbvbXTLA';
+  urlToken = "https://accounts.spotify.com/api/token";
+
+  headers = new Headers({ 'Authorization':  this.token});
+
 
   constructor( private http:Http ) { }
+
+
+  getToken(headers){
+//    let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+//    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+//    headers.append('client_id','e4be07658c244074ae56664c2f3460bf');
+//    headers.append('client_secret','d2a61350a514429694c190c35196f2ea');
+//    headers.append('grant_type','client_credentials');
+
+    return this.http.post(this.urlToken, {headers})
+    .map( res =>{
+      let data = res.json();
+      console.log(data);
+    } );
+  }
 
 
   getArtistas( termino:string ){
 
     let headers = new Headers();
-    headers.append( 'Authorization' , 'Bearer BQAQHTun6uwDujZ98CvQWURbVflOA4mIiVsNrVgGd5lrdbzzPyItnZtynbxMJpqm6nJ0_WtknhUwB-DhzfBM-g');
-
     let query = `?q=${ termino}&type=artist`;
     let url = this.urlBusqueda + query;
 
+
+    headers = this.headers;
     return this.http.get( url , {headers}  )
       .map( res =>{
         this.artistas =  res.json().artists.items;
-        console.log ( this.artistas);
         return this.artistas;
       } );
+
+  }
+
+  getArtista( id:string ){
+
+    let headers = new Headers();
+    let query = `/${id}`;
+    let url = this.urlArtista + query;
+
+    headers = this.headers;
+    return this.http.get( url , {headers}  )
+      .map( res =>{
+        console.log(res.json());
+        return res.json();
+      } );
+  }
+
+  getTop( id:string ){
+
+    let headers = new Headers();
+    let query = `/${id}/top-tracks?country=ES`;
+    let url = this.urlArtista + query;
+
+    headers = this.headers;
+    return this.http.get( url , {headers}  )
+      .map( res =>{
+        let artista =  res.json();
+        return res.json();
+
+      } );
+
   }
 }

@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
   ngOnInit() {}
 
   buscarArtista(){
+    //this._spotifyService.getToken().subscribe();
+
     this._spotifyService.getArtistas( this.termino )
         .subscribe();
   }
