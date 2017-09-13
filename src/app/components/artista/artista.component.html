@@ -1,8 +1,35 @@
 <div class="container-fluid">
   <div class="row mt-5 ml-4">
-    <div class="col-2 ">
-    <!--  <img [src]="artistaa.images | sinfoto" class="rounded-circle" width="150px;" height="150px;">-->
+    <div class="col-md-6 d-flex justify-content-around align-items-center">
+    <img [src]="artista.imagen | sinfoto" class="rounded-circle" width="200px;" height="200px;">
+    <div class="text-center">
+      FOLLOWERS <br>{{artista.followers | sininformacion}} <br><p class="mt-4 text-secondary"><a style="text-decoration: none; color:#1ed55f;" [href]="artista.pagina | sininformacion"> más info</a></p>
+
+    </div>
+    </div>
+    <div class="col-md-6 mt-4 text-center d-flex align-items-center justify-content-center" style="color:white;">
+      <p class="display-4">{{artista.nombre | sininformacion}}</p>
     </div>
   </div>
+  <hr style="border-color:white;">
+</div>
 
+<div class="container-fluid d-flex justify-content-around" style="height:45vh;">
+  <div class="col-md-4 hidden-sm-down text-center">
+    <div style="font-size: 2em; color:#1ed55f;" class="mb-3 text-capitalize">
+      géneros
+    </div>
+    <div class="d-flex justify-content-center mb-2 text-left text-capitalize container-fluid" *ngFor="let genero of artista.generos">
+      {{ genero | sininformacion }}
+    </div>
+  </div>
+  <div class="col-md-8 col-sm-12" style="overflow-y:auto;">
+    <div class="row d-flex justify-content-around align-items-center card-header text-white rounded-left bg-success animated fadeIn barra-canciones-style " *ngFor="let pista of pistas">
+      <div class="col-2 mb-0">
+        <img [src]="pista.imagenAlbum | sinfoto" class="rounded" width="40px;" height="40px;">
+      </div>
+      <div class="text-left col-8">{{pista.nombre}}</div>
+      <div class="text-right col-2">{{pista.duration | date: "m:ss"}}</div>
+    </div>
+  </div>
 </div>

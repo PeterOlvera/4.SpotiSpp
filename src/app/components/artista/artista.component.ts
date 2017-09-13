@@ -8,13 +8,13 @@ import { SpotifyService } from '../../services/spotify.service';
   templateUrl: './artista.component.html',
   styleUrls: ['./artista.component.css']
 })
+
+
+
+
 export class ArtistaComponent implements OnInit {
 
-/* class Artista: {
-    nombre:string;
-    imagen:string;
-    pagina:string;
-  /*  canciones:{
+/*  canciones:{
       titulo:string;
       imagen:string;
     };
@@ -23,13 +23,9 @@ artista(){
   return this.artrista
 }*/
 
-  artistaa = {
-    nombre: "",
-    imagen: "",
-    pagina: ""
-  };
-  pistas: any[];
-  imagenPerfil: string;
+
+  artista= new Artista();
+  pistas: Pista[] = [];
 
   constructor( private activatedRoute: ActivatedRoute ,
                 private _spotifyService: SpotifyService) { }
@@ -39,19 +35,54 @@ artista(){
         .map(parametros => parametros['id'])
         .subscribe( id => {
 
-
+//OBTENER INFO DE LA REQUEST PARA EL ARTISTA//
         this._spotifyService.getArtista(id)
-              .subscribe( data => this.artistaa.nombre = data.name
-              ); //data => this.artistaa.imagen = data//);
+              .subscribe(  data => {
+                this.artista.nombre = data.name;
+                this.artista.imagen = data.images;
+                this.artista.followers = data.followers.total;
+                this.artista.pagina = data.external_urls.spotify;
+                this.artista.generos = data.genres;
+              });
 
-      /*      this._spotifyService.getTop(id)
-              .subscribe( data => this.pistas = data
-
-              );*/
-
+//OBTENER top-tracks DEL ARTISTA//
+        this._spotifyService.getTop(id)
+              .subscribe ( data => {
+                console.log(data);
+                for(let track of data.tracks){
+                  let pista = new Pista(track.name, track.duration_ms, track.album.images);
+                  this.pistas.push(pista);
+                }
+              });
+              console.log(this.pistas);
+              console.log(this.artista);
 
         });
-        console.log(this.artistaa);
   }
 
 }
+
+class Artista {
+    nombre:string;
+    imagen:string;
+    pagina:string;
+    followers:string;
+    generos:string[];
+    constructor(){
+
+    }
+  }
+
+  class Pista {
+    nombre:string;
+    imagen:string;
+    album:string;
+    duration:string;
+    imagenAlbum:string;
+
+    constructor(nombre:string, duration:string, imagenAlbum:string){
+      this.nombre = nombre;
+      this.duration = duration;
+      this.imagenAlbum  = imagenAlbum;
+    }
+  }

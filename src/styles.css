@@ -2,10 +2,12 @@
 body{
   background-color: black;
   color: white !important;
+  font-family: 'Roboto', sans-serif;
 }
 
 hr{
   border-color: white;
+  margin-bottom: 5px;
 }
 
 .jumbotron{
@@ -73,4 +75,16 @@ hr{
 
 .pointer{
   cursor: pointer;
+}
+
+.barra-canciones-style{
+  padding-left: 0px;
+  padding-left: 0px;
+  border-top-style: inset;
+  border-bottom-style: outset;
+  background-color: black !important;
+  border-left-style: dotted;
+  border-width: 1px;
+  border-color: #ffffff;
+  margin-bottom: 5px;
 }

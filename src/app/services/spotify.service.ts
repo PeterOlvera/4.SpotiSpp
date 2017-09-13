@@ -10,7 +10,7 @@ export class SpotifyService {
   urlBusqueda:string = "https://api.spotify.com/v1/search";
   urlArtista:string = "	https://api.spotify.com/v1/artists";
 
-  token = 'Bearer BQAj2H3LlN00Si0dGcKOOL7fQTqmRYCygu5fE8Md8kqHvAqwa2ZWqABOpQXbxQC0JSZoPU0VYQ5ewxhbvbXTLA';
+  token = 'Bearer BQA0IeJe-YAkY2nmFuZGTqv60ejugaduQm2UzojzFPfHo4WyodeaaqaVG60-mGq2xK_cRO6wNGQCVg7Gte2hvg';
   urlToken = "https://accounts.spotify.com/api/token";
 
   headers = new Headers({ 'Authorization':  this.token});
