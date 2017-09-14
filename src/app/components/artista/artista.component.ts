@@ -50,7 +50,7 @@ artista(){
               .subscribe ( data => {
                 console.log(data);
                 for(let track of data.tracks){
-                  let pista = new Pista(track.name, track.duration_ms, track.album.images);
+                  let pista = new Pista(track.name, track.duration_ms, track.album.images, track.uri);
                   this.pistas.push(pista);
                 }
               });
@@ -79,10 +79,11 @@ class Artista {
     album:string;
     duration:string;
     imagenAlbum:string;
-
-    constructor(nombre:string, duration:string, imagenAlbum:string){
+    uri:string;
+    constructor(nombre:string, duration:string, imagenAlbum:string, uri:string){
       this.nombre = nombre;
       this.duration = duration;
       this.imagenAlbum  = imagenAlbum;
+      this.uri = uri;
     }
   }

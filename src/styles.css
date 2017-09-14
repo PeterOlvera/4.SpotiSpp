@@ -79,12 +79,6 @@ hr{
 
 .barra-canciones-style{
   padding-left: 0px;
-  padding-left: 0px;
-  border-top-style: inset;
-  border-bottom-style: outset;
-  background-color: black !important;
-  border-left-style: dotted;
-  border-width: 1px;
-  border-color: #ffffff;
+  padding-right: 12px;
   margin-bottom: 5px;
 }
